@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Familia, Bebe
 
-# Register your models here.
+admin.site.register(Familia)
+admin.site.register(Bebe)
