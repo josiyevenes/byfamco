@@ -14,4 +14,5 @@ urlpatterns = [
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/dashboard/stats/', dashboard_stats, name='dashboard-stats'),
     path('api/', include('familias.urls')),
+    path('api/', include('documentos.urls')),
 ]
