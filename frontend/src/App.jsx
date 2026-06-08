@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import Layout from './components/Layout'
 import { RutaProtegida } from './components/RutaProtegida'
-import { logout } from './api/auth'
 
 function App() {
   return (
@@ -12,7 +12,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={
           <RutaProtegida>
-            <Dashboard />
+            <Layout>
+              <Dashboard />
+            </Layout>
           </RutaProtegida>
         } />
       </Routes>
