@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import Familias from './pages/Familias'
 import Layout from './components/Layout'
 import { RutaProtegida } from './components/RutaProtegida'
 
@@ -14,6 +15,13 @@ function App() {
           <RutaProtegida>
             <Layout>
               <Dashboard />
+            </Layout>
+          </RutaProtegida>
+        } />
+        <Route path="/familias" element={
+          <RutaProtegida>
+            <Layout>
+              <Familias />
             </Layout>
           </RutaProtegida>
         } />
