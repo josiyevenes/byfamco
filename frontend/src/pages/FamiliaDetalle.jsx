@@ -45,6 +45,16 @@ export default function FamiliaDetalle() {
 
   if (!familia) return <div style={{ padding: "32px" }}>Cargando...</div>
 
+function calcularEdad(fecha_nacimiento) {
+  if (!fecha_nacimiento) return null
+  const hoy = new Date()
+  const nacimiento = new Date(fecha_nacimiento)
+  const meses = (hoy.getFullYear() - nacimiento.getFullYear()) * 12 + (hoy.getMonth() - nacimiento.getMonth())
+  if (meses < 12) return `${meses} meses`
+  const años = Math.floor(meses / 12)
+  return `${años} año${años > 1 ? "s" : ""}`
+}
+
   return (
     <div style={{ padding: "32px" }}>
       <h1 style={{ marginBottom: "4px" }}>{familia.nombre_contacto}</h1>
@@ -106,9 +116,11 @@ export default function FamiliaDetalle() {
           familia.bebes && familia.bebes.map((b) => (
             <div key={b.id} style={{ padding: "14px 20px", borderBottom: "1px solid #f3f2ef" }}>
               <div style={{ fontSize: "14px", fontWeight: "600" }}>{b.nombre}</div>
-              <div style={{ fontSize: "12px", color: "#9b9890", marginTop: "2px" }}>
-                {b.fecha_nacimiento ? `Nacimiento: ${b.fecha_nacimiento}` : "Sin fecha de nacimiento"}
-              </div>
+            <div style={{ fontSize: "12px", color: "#9b9890", marginTop: "2px" }}>
+              {b.fecha_nacimiento 
+                ? `Nacimiento: ${b.fecha_nacimiento} · ${calcularEdad(b.fecha_nacimiento)}`
+                : "Sin fecha de nacimiento"}
+            </div>
               {b.observaciones && <div style={{ fontSize: "12px", color: "#666", marginTop: "4px" }}>{b.observaciones}</div>}
             </div>
           ))
