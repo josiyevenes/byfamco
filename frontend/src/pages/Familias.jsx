@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { getToken } from "../api/auth"
@@ -11,6 +12,7 @@ export default function Familias() {
     email: "",
     direccion: "",
   })
+  const navigate = useNavigate()
 
   useEffect(() => {
     cargarFamilias()
@@ -82,12 +84,14 @@ export default function Familias() {
         </div>
       )}
 
-      <div style={{ background: "white", border: "1px solid #e2e0db", borderRadius: "10px", overflow: "hidden" }}>
+ <div style={{ background: "white", border: "1px solid #e2e0db", borderRadius: "10px", overflow: "hidden" }}>
         {familias.length === 0 ? (
           <p style={{ padding: "24px", color: "#9b9890", fontSize: "13px" }}>No hay familias registradas todavía.</p>
         ) : (
           familias.map((f) => (
-            <div key={f.id} style={{ display: "flex", alignItems: "center", padding: "14px 20px", borderBottom: "1px solid #f3f2ef" }}>
+            <div key={f.id}
+              onClick={() => navigate(`/familias/${f.id}`)}
+              style={{ display: "flex", alignItems: "center", padding: "14px 20px", borderBottom: "1px solid #f3f2ef", cursor: "pointer" }}>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: "14px", fontWeight: "600" }}>{f.nombre_contacto}</div>
                 <div style={{ fontSize: "12px", color: "#9b9890", marginTop: "2px" }}>{f.telefono} · {f.email}</div>

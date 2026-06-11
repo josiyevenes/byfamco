@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Familias from './pages/Familias'
+import FamiliaDetalle from './pages/FamiliaDetalle'
+import Contratos from './pages/Contratos'
 import Layout from './components/Layout'
 import { RutaProtegida } from './components/RutaProtegida'
 
@@ -22,6 +24,20 @@ function App() {
           <RutaProtegida>
             <Layout>
               <Familias />
+            </Layout>
+          </RutaProtegida>
+        } />
+        <Route path="/familias/:id" element={
+          <RutaProtegida>
+            <Layout>
+              <FamiliaDetalle />
+            </Layout>
+          </RutaProtegida>
+        } />
+        <Route path="/contratos" element={
+          <RutaProtegida>
+            <Layout>
+              <Contratos />
             </Layout>
           </RutaProtegida>
         } />
