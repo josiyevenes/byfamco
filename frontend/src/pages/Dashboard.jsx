@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
+const API = import.meta.env.VITE_API_URL
+
 function getEmailFromToken() {
   const token = localStorage.getItem("token")
   if (!token) return ""
@@ -27,7 +29,7 @@ export default function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token")
     axios
-      .get("http://localhost:8000/api/dashboard/stats/", {
+      .get(`${API}/dashboard/stats/`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setStats(res.data))

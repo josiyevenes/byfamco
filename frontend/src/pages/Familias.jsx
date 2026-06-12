@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { getToken } from "../api/auth"
 
+const API = import.meta.env.VITE_API_URL
+
 export default function Familias() {
   const [familias, setFamilias] = useState([])
   const [mostrarFormulario, setMostrarFormulario] = useState(false)
@@ -20,7 +22,7 @@ export default function Familias() {
 
   function cargarFamilias() {
     axios
-      .get("http://localhost:8000/api/familias/", {
+      .get(`${API}/familias/`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((res) => setFamilias(res.data))
@@ -33,7 +35,7 @@ export default function Familias() {
 
   function handleGuardar() {
     axios
-      .post("http://localhost:8000/api/familias/", form, {
+      .post(`${API}/familias/`, form, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then(() => {

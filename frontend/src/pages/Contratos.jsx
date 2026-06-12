@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { getToken } from "../api/auth"
 
+const API = import.meta.env.VITE_API_URL
+
 export default function Contratos() {
   const [contratos, setContratos] = useState([])
   const [familias, setFamilias] = useState([])
@@ -22,7 +24,7 @@ export default function Contratos() {
 
   function cargarContratos() {
     axios
-      .get("http://localhost:8000/api/contratos/", {
+      .get(`${API}/contratos/`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((res) => setContratos(res.data))
@@ -31,7 +33,7 @@ export default function Contratos() {
 
   function cargarFamilias() {
     axios
-      .get("http://localhost:8000/api/familias/", {
+      .get(`${API}/familias/`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((res) => setFamilias(res.data))
@@ -44,7 +46,7 @@ export default function Contratos() {
 
   function handleGuardar() {
     axios
-      .post("http://localhost:8000/api/contratos/", form, {
+      .post(`${API}/contratos/`, form, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then(() => {

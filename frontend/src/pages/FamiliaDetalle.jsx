@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import { getToken } from "../api/auth"
 
+const API = import.meta.env.VITE_API_URL
+
 export default function FamiliaDetalle() {
   const { id } = useParams()
   const [familia, setFamilia] = useState(null)
@@ -19,7 +21,7 @@ export default function FamiliaDetalle() {
 
   function cargarFamilia() {
     axios
-      .get(`http://localhost:8000/api/familias/${id}/`, {
+      .get(`${API}/familias/${id}/`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then((res) => setFamilia(res.data))
@@ -32,7 +34,7 @@ export default function FamiliaDetalle() {
 
   function handleGuardarBebe() {
     axios
-      .post("http://localhost:8000/api/bebes/", { ...formBebe, familia: id }, {
+      .post(`${API}/bebes/`, { ...formBebe, familia: id }, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then(() => {
